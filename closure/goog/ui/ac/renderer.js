@@ -323,7 +323,7 @@ goog.ui.ac.Renderer.prototype.getElement = function() {
  *     as the autocomplete's max width.
  */
 goog.ui.ac.Renderer.prototype.setWidthProvider = function(
-    widthProvider, opt_borderWidth, maxWidthProvider = undefined) {
+    widthProvider, opt_borderWidth, maxWidthProvider) {
   this.widthProvider_ = widthProvider;
   if (opt_borderWidth) {
     this.borderWidth_ = opt_borderWidth;
@@ -668,7 +668,7 @@ goog.ui.ac.Renderer.prototype.redraw = function() {
     this.element_.style.minWidth = width;
   }
   if (this.maxWidthProvider_) {
-    const maxWidth =
+    var maxWidth =
         this.maxWidthProvider_.clientWidth - this.borderWidth_ + 'px';
     this.element_.style.maxWidth = maxWidth;
   }
