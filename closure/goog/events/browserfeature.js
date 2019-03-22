@@ -21,8 +21,20 @@
 goog.provide('goog.events.BrowserFeature');
 
 goog.require('goog.userAgent');
-goog.scope(function() {
 
+/**
+ * Tricks Closure Compiler into believing that a function is pure.  The compiler
+ * assumes that any `valueOf` function is pure, without analyzing its contents.
+ *
+ * @param {function(): T} fn
+ * @return {T}
+ * @template T
+ */
+function purify(fn) {
+  return ({valueOf: fn}).valueOf();
+}
+
+goog.scope(function() {
 
 
 /**
@@ -126,17 +138,4 @@ goog.events.BrowserFeature = {
     return passive;
   })
 };
-
-
-/**
- * Tricks Closure Compiler into believing that a function is pure.  The compiler
- * assumes that any `valueOf` function is pure, without analyzing its contents.
- *
- * @param {function(): T} fn
- * @return {T}
- * @template T
- */
-function purify(fn) {
-  return ({valueOf: fn}).valueOf();
-}
 });  // goog.scope
